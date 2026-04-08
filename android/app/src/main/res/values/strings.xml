@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Notemaking</string>
+    <string name="title_activity_main">Notemaking</string>
+    <string name="package_name">com.notemaking.app</string>
+    <string name="custom_url_scheme">com.notemaking.app</string>
+</resources>

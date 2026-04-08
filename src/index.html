@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <title>Notemaking Pro - Premium Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="app-container">
+        <header>
+            <div class="header-title-group">
+                <h1>My Notes</h1>
+                <div id="liveClockDate" class="live-clock"></div>
+            </div>
+            
+            <div class="header-controls">
+                <div class="search-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="searchInput" placeholder="Search notes..." autocomplete="off">
+                </div>
+                
+                <div class="utility-btns">
+                    <button id="exportBtn" class="icon-btn" title="Export Notes (Backup)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </button>
+                    <button id="importBtn" class="icon-btn" title="Import Notes (Restore)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    </button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;">
+                </div>
+
+                <div class="focus-timer">
+                    <span id="timerDisplay">00:00:00</span>
+                    <button id="startTimerBtn" class="icon-btn" title="Start/Pause Timer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    </button>
+                    <button id="resetTimerBtn" class="icon-btn" title="Reset Timer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><polyline points="3 3 3 8 8 8"></polyline></svg>
+                    </button>
+                </div>
+                <button id="addNoteBtn" class="primary-btn">+ New Note</button>
+            </div>
+        </header>
+
+        <main id="notesContainer" class="notes-grid">
+            <!-- Notes will be injected here via JS -->
+        </main>
+    </div>
+
+    <!-- Add/Edit Note Modal -->
+    <div id="noteModal" class="modal-backdrop hidden">
+        <div class="modal">
+            <h2 id="modalTitle">Add a Note</h2>
+            <input type="text" id="noteTitle" placeholder="Title" autocomplete="off">
+            <textarea id="noteContent" placeholder="Write your note here..."></textarea>
+            
+            <div class="modal-controls">
+                <div class="color-picker" id="colorPicker">
+                    <div class="color-option active" data-color="default"></div>
+                    <div class="color-option" data-color="blue" style="background-color: rgba(59, 130, 246, 0.2); border-color: #3b82f6;"></div>
+                    <div class="color-option" data-color="purple" style="background-color: rgba(168, 85, 247, 0.2); border-color: #a855f7;"></div>
+                    <div class="color-option" data-color="emerald" style="background-color: rgba(16, 185, 129, 0.2); border-color: #10b981;"></div>
+                    <div class="color-option" data-color="rose" style="background-color: rgba(244, 63, 94, 0.2); border-color: #f43f5e;"></div>
+                </div>
+                
+                <button id="voiceBtn" class="icon-btn voice-btn" title="Dictate Note (Voice-to-Text)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg>
+                </button>
+            </div>
+
+            <div class="modal-actions">
+                <button id="cancelBtn" class="secondary-btn">Cancel</button>
+                <button id="saveBtn" class="primary-btn">Save Note</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed', err));
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "notemaking-app",
+  "version": "1.0.0",
+  "description": "Premium Notemaking Application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package-win": "electron-packager . Notemaking --platform=win32 --arch=x64 --out=dist --overwrite",
+    "cap-init": "npx cap init \"Notemaking\" \"com.notemaking.app\" --web-dir src",
+    "cap-add-android": "npx cap add android",
+    "cap-sync": "npx cap sync"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/core": "^6.0.0"
+  },
+  "devDependencies": {
+    "electron": "^30.5.1",
+    "electron-packager": "^17.1.2"
+  }
+}
